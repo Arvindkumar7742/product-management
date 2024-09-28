@@ -3,8 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   productRows: [
     {
+      id:"0",
+      product_filter:"Product Filter",
+      variants:["Primary Variant","Variant 2"]
+    },
+    {
       id: "1",
-      product_filter: ["image_list.product image2", "is empty", "0"],
+      product_filter: ["image_list.product image2", "is", "empty"],
       variants: [
         {
           id: "1",
@@ -116,7 +121,14 @@ const productSlice = createSlice({
         design:null
       }
 
-      
+      for(let i=0;i<state.productRows.length;i++){
+        if(i==0){
+          state.productRows[i].variants.push(`Variants ${i}`);
+        }
+        else{
+          state.productRows[i].variants.push(newVariant);
+        }
+      }
     }
   },
 });
