@@ -143,9 +143,15 @@ const productSlice = createSlice({
     updateProductRows:(state,action)=>{
         const updated = [state.productRows[0],...action.payload];
         state.productRows = updated;
+    },
+    //to delete a prduct row or state from the product page
+    deleteProductRow:(state,action)=>{
+      const updateProductRows = state.productRows.filter((productRow)=>productRow.id!==action.payload.id);
+      state.productRows = updateProductRows;
+      toast.success("State removed!")
     }
   },
 });
 
-export const { addProductRow , addVariant ,updateProductRows} = productSlice.actions;
+export const { addProductRow , addVariant ,updateProductRows , deleteProductRow} = productSlice.actions;
 export default productSlice.reducer;

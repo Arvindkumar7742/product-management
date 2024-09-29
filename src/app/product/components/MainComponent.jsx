@@ -18,7 +18,8 @@ export const MainComponent = () => {
     ) {
       setNewProductRows(slicedProductRows);
     }
-    if(newProductRows[0].variants.length !== productRows[0].variants.length){
+    console.log(newProductRows);
+    if(newProductRows.length>0 && newProductRows[0].variants.length !== productRows[0].variants.length){
       setNewProductRows(productRows.slice(1));
     }
   }, [productRows]);

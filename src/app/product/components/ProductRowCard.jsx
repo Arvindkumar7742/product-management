@@ -4,7 +4,7 @@ import { VariantCard } from "./VariantCard";
 import { IoMdAdd } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { addVariant } from "@/redux/slices/productSlice";
+import { addVariant, deleteProductRow } from "@/redux/slices/productSlice";
 import { Reorder, useDragControls } from "framer-motion";
 
 export const ProductRowCard = ({ productRow, num }) => {
@@ -20,7 +20,11 @@ export const ProductRowCard = ({ productRow, num }) => {
             <div className="ml-[200px] h-[200px] text-md  mt-[20px] flex flex-row gap-10 group">
                 <div className="flex justify-center gap-[3px] items-center pr-10 border-r-2 border-slate-200 text-2xl font-bold">
                     <div className="flex flex-col justify-center items-center gap-1">
-                        <RiDeleteBinLine className="opacity-0 group-hover:opacity-100 text-red-500" />
+                        <RiDeleteBinLine
+                        onClick={()=>{
+                            dispatch(deleteProductRow({id:productRow.id}));
+                        }}
+                        className="opacity-0 group-hover:opacity-100 text-red-500" />
                         <div className="flex flex-row justify-center items-center">
                             <span> {num}</span>
                             <PiDotsNineBold onPointerDown={(e) => controls.start(e)}
