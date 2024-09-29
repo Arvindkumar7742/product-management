@@ -65,6 +65,4 @@ Follow these steps to run the project locally:
 
 You can also access the live demo of this project hosted on Vercel via the link below
 
-    ```bash
     https://product-management-five-ivory.vercel.app/
-    ```
