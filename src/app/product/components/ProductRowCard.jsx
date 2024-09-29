@@ -55,10 +55,10 @@ export const ProductRowCard = ({ productRow, num }) => {
                     }
                 </div>
 
-                <div className=" w-[100px] flex justify-center items-center cursor-pointer">
+                <div className="w-[100px] flex justify-center items-center cursor-pointer">
                     <IoAddSharp onClick={() => {
                         dispatch(addVariant());
-                    }} className="text-4xl font-bold border-2 rounded-md p-1 box-border mb-5" />
+                    }} className="text-4xl font-bold border-2 rounded-md p-1 box-border mb-5 mr-[50px]" />
                 </div>
             </div>
         </Reorder.Item>
