@@ -6,6 +6,11 @@
   
 }
 
+.backdrop-dark {
+  background-color: rgba(126, 119, 119, 0.8); /* Adjust the opacity as needed */
+  backdrop-filter: blur(1px);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

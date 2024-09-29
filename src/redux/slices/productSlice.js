@@ -149,9 +149,32 @@ const productSlice = createSlice({
       const updateProductRows = state.productRows.filter((productRow)=>productRow.id!==action.payload.id);
       state.productRows = updateProductRows;
       toast.success("State removed!")
-    }
+    },
+    insertDesign: (state, action) => {
+      const { row_id, variant_id, variant_name, variant_design } = action.payload;
+  
+      const productRow = state.productRows.find(row => row.id === row_id);
+  
+      if (productRow) {
+          const variantIndex = productRow.variants.findIndex(variant => variant.id === variant_id);
+  
+          if (variantIndex !== -1) {
+              productRow.variants[variantIndex] = {
+                  ...productRow.variants[variantIndex],
+                  name: variant_name,
+                  design: variant_design,
+              };
+          } else {
+              console.error(`Variant with id ${variant_id} not found in row ${row_id}.`);
+          }
+      } else {
+          console.error(`Product row with id ${row_id} not found.`);
+      }
+      toast.success("Variant template updated");
+  }
+  
   },
 });
 
-export const { addProductRow , addVariant ,updateProductRows , deleteProductRow} = productSlice.actions;
+export const { addProductRow , addVariant ,updateProductRows , deleteProductRow, insertDesign} = productSlice.actions;
 export default productSlice.reducer;

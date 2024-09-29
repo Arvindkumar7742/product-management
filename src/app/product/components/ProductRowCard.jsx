@@ -24,7 +24,7 @@ export const ProductRowCard = ({ productRow, num }) => {
                         onClick={()=>{
                             dispatch(deleteProductRow({id:productRow.id}));
                         }}
-                        className="opacity-0 group-hover:opacity-100 text-red-500" />
+                        className="opacity-0 group-hover:opacity-100 text-red-500 cursor-pointer" />
                         <div className="flex flex-row justify-center items-center">
                             <span> {num}</span>
                             <PiDotsNineBold onPointerDown={(e) => controls.start(e)}
@@ -33,7 +33,7 @@ export const ProductRowCard = ({ productRow, num }) => {
                     </div>
                 </div>
 
-                <div className="w-[300px] flex justify-center items-center border-2 border-slate-200 rounded-md">
+                <div className="min-w-[300px] max-w-[300px] flex justify-center items-center border-2 border-slate-200 rounded-md">
                     <div className="flex gap-2 text-sm font-thin">
                         {
                             productRow.product_filter.length == 0 ? (<div className="flex font-extralight flex-row items-center justify-center gap-1 cursor-pointer border-2 p-2 border-slate-300 rounded-md">
@@ -50,7 +50,7 @@ export const ProductRowCard = ({ productRow, num }) => {
                 <div className="flex flex-row">
                     {
                         productRow.variants.map((variant, index) => (
-                            <div key={variant.id} className={`border-l-2 min-w-[250px] flex justify-center items-center ${index + 1 == productRow.variants.length && "border-r-2"}`}><VariantCard variant={variant} /></div>
+                            <div key={variant.id} className={`border-l-2 min-w-[250px] flex justify-center items-center ${index + 1 == productRow.variants.length && "border-r-2"}`}><VariantCard variant={variant} row_id={productRow.id}/></div>
                         ))
                     }
                 </div>
