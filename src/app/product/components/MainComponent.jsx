@@ -53,7 +53,7 @@ export const MainComponent = () => {
       </div>
 
       {/* Main Component Container */}
-      <div className="flex flex-col w-[95%] overflow-x-scroll select-none flex-grow gap-5 bg-slate-100 border-2 border-solid border-slate-200 ml-[50px] mr-[50px] rounded-md">
+      <div className="flex flex-col w-[95%] overflow-x-scroll select-none flex-grow gap-5 bg-slate-100 border-2 border-solid border-slate-200 ml-[50px] mr-[50px] mb-10 rounded-md">
         {/* Header row for the product page */}
         <div className="ml-[228px] min-h-[40px] text-md font-bold text-slate-500 mt-[20px] flex flex-row gap-10">
           <div className="ml-[90px] min-w-[300px] flex justify-center items-center border-b-2 border-slate-300">
