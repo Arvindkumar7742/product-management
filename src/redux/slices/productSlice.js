@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 const initialState = {
   productRows: [
@@ -95,16 +96,16 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     addProductRow: (state) => {
-      let total_variant = state.productRows[0].variants;
+      let total_variant = state.productRows[0].variants.length;
       let id = Date.now();
       let newProductRow = {
-        id: toString(id),
+        id: `${id}`,
         product_filter: [],
         variants: [],
       }
       for (let i = 0; i < total_variant; i++) {
         newProductRow.variants.push({
-          id: toString(i),
+          id:`${i+1}`,
           name: null,
           design: null
         })
@@ -112,26 +113,39 @@ const productSlice = createSlice({
 
       //add to the product rows
       state.productRows.push(newProductRow);
+      toast.success('State added');
     },
-    addVariant:(state)=>{
+    addVariant: (state) => {
       let totalVariant = state.productRows[0].variants.length;
+    
       let newVariant = {
-        id:toString(totalVariant+1),
-        name:null,
-        design:null
-      }
-
-      for(let i=0;i<state.productRows.length;i++){
-        if(i==0){
-          state.productRows[i].variants.push(`Variants ${i}`);
+        id: `${totalVariant + 1}`,
+        name: null,
+        design: null
+      };
+        
+      state.productRows = state.productRows.map((row, index) => {
+        if (index === 0) {
+          return {
+            ...row,
+            variants: [...row.variants, `Variant ${totalVariant + 1}`]
+          };
+        } else {
+          return {
+            ...row,
+            variants: [...row.variants, newVariant]
+          };
         }
-        else{
-          state.productRows[i].variants.push(newVariant);
-        }
-      }
+      });
+    
+      toast.success('Variant added');
+    },    
+    updateProductRows:(state,action)=>{
+        const updated = [state.productRows[0],...action.payload];
+        state.productRows = updated;
     }
   },
 });
 
-export const { } = productSlice.actions;
+export const { addProductRow , addVariant ,updateProductRows} = productSlice.actions;
 export default productSlice.reducer;
